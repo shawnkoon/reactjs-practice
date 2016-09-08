@@ -7,36 +7,24 @@
     <script src="https://fb.me/react-15.1.0.js"></script>
     <script src="https://fb.me/react-dom-15.1.0.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/babel-core/5.8.23/browser.min.js"></script>
-    <style>
-        #container
-        {
-            padding: 50px;
-            background-color: #EEE;
-        }
-
-        #container h1
-        {
-            font-size: 48px;
-            font-family: sans-serif;
-            color: #0080a8;
-        }
-    </style>
+    
 </head>
 
 <body>
     <div id="container"></div>
     <script type="text/babel">
+        var HelloWorld = React.createClass({
+            render: function()
+            {
+                return (
+                    <p>Hello, componentized world!</p>
+                );
+            }
+        });
 
-        var destination = document.querySelector("#container");
-    
         ReactDOM.render(
-            <div>
-                <h1>Shawnkoon!!!! REACT!!</h1>
-                <h1>Batman</h1>
-                <h1>Iron Man</h1>
-                <h1>SHAWN</h1>
-            </div>,
-            destination
+            <HelloWorld/>,
+            document.querySelector("#container")
         );
     </script>
 </body>
