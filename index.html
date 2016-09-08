@@ -17,13 +17,21 @@
             render: function()
             {
                 return (
-                    <p>Hello, componentized world!</p>
+                    <p>Hello, {this.props.greetTarget}!</p>
                 );
             }
         });
 
         ReactDOM.render(
-            <HelloWorld/>,
+            <div>
+                <HelloWorld greetTarget="Shawnkoon"/>
+                <HelloWorld greetTarget="Shawn"/>
+                <HelloWorld greetTarget="Trevor"/>
+                <HelloWorld greetTarget="Curran"/>
+                <HelloWorld greetTarget="Zack"/>
+                <HelloWorld greetTarget="Jefthe"/>
+                <HelloWorld greetTarget="Bernadin"/>
+            </div>,
             document.querySelector("#container")
         );
     </script>
