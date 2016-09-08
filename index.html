@@ -13,25 +13,23 @@
 <body>
     <div id="container"></div>
     <script type="text/babel">
-        var HelloWorld = React.createClass({
+        var MyComponent = React.createClass(
+        {
             render: function()
             {
-                return (
-                    <p>Hello, {this.props.greetTarget}!</p>
+                return(
+                    <div>
+                        <button type={this.props.behavior}>{this.props.children}</button>
+                    </div>
                 );
             }
         });
 
         ReactDOM.render(
-            <div>
-                <HelloWorld greetTarget="Shawnkoon"/>
-                <HelloWorld greetTarget="Shawn"/>
-                <HelloWorld greetTarget="Trevor"/>
-                <HelloWorld greetTarget="Curran"/>
-                <HelloWorld greetTarget="Zack"/>
-                <HelloWorld greetTarget="Jefthe"/>
-                <HelloWorld greetTarget="Bernadin"/>
-            </div>,
+            <MyComponent behavior="Submit">
+                <h1>SHAWNKOON</h1>
+                <p>TEST</p>
+            </MyComponent>,
             document.querySelector("#container")
         );
     </script>
