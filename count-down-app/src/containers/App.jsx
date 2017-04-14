@@ -1,7 +1,9 @@
 import * as React from 'react';
-import './styles/App.css';
 
-export class App extends React.Component {
+// Container
+import { ClockContainer } from './Clock';
+
+export class AppContainer extends React.Component {
 	constructor(props) {
 		super(props);
 		this.state = {
@@ -16,13 +18,9 @@ export class App extends React.Component {
 		return (
 			<div className="App">
 				<div className="App-title">Countdown to {this.state.deadline}</div>
-				<div>
-					<div className="Clock-days">14 days</div>
-					<div className="Clock-hours">30 hours</div>
-					<div className="Clock-minutes">15 minutes</div>
-					<div className="Clock-seconds">20 seconds</div>
-				</div>
-				<br/>
+				<ClockContainer
+					deadline={this.state.deadline}
+				/>
 				<br/>
 				<div>
 					<input placeholder="new date" onChange={this.handleInputChange}/>
@@ -45,4 +43,4 @@ export class App extends React.Component {
 		};
 		this.setState(newValue);
 	}
-};
+}

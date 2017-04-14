@@ -2,9 +2,9 @@ import * as React from 'react';
 import * as ReactDom from 'react-dom';
 
 // Component
-import { App } from './App';
+import { AppContainer } from './containers/App';
 
 ReactDom.render(
-	<App/>,
+	<AppContainer/>,
 	document.getElementById('root')
 );
