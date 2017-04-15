@@ -3,13 +3,12 @@ import * as React from 'react';
 import { Gallery } from '../components/Gallery';
 
 export class GalleryContainer extends React.Component {
-	constructor(props) {
-		super(props);
-	}
-
 	render() {
+		console.log(this.props);
 		return (
-			<Gallery/>
+			<Gallery
+				{...this.props}
+			/>
 		)
 	}
 }

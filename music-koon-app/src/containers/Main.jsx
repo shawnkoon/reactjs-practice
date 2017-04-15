@@ -3,7 +3,6 @@ import * as React from 'react';
 // Styles
 import '../styles/App.css';
 import {
-	Button,
 	FormGroup,
 	FormControl,
 	Glyphicon,
@@ -20,6 +19,7 @@ export class MainContainer extends React.Component {
 		super(props);
 		this.state = {
 			artist: null,
+			albums: null,
 			query: '',
 		};
 		this.handleInputChange = this.handleInputChange.bind(this);
@@ -47,10 +47,22 @@ export class MainContainer extends React.Component {
 						</InputGroup>
 					</FormGroup>
 				</div>
-				<ProfileContainer
-					artist={this.state.artist}
-				/>
-				<GalleryContainer/>
+				{
+					this.state.artist !== null
+					? <div>
+						<ProfileContainer
+							artist={this.state.artist}
+						/>
+						{
+							this.state.albums !== null
+							? <GalleryContainer
+								albums={this.state.albums}
+							/>
+							: <div></div>
+						}
+					</div>
+					: <div></div>
+				}
 			</div>
 		)
 	}
@@ -68,15 +80,33 @@ export class MainContainer extends React.Component {
 	}
 
 	search() {
-		const BASE_URL = 'https://api.spotify.com/v1/search?'
-		const FETCH_URL = `${BASE_URL}q=${this.state.query}&type=artist&limit=1`;
-		fetch(FETCH_URL, {
+		const BASE_PROF_URL = 'https://api.spotify.com/v1/search?';
+		const FETCH_PROF_URL = `${BASE_PROF_URL}q=${this.state.query}&type=artist&limit=1`;
+		const BASE_ALBUM_URL = 'https://api.spotify.com/v1/artists';
+		fetch(FETCH_PROF_URL, {
 			method: 'GET'
 		}).then(response => (
 			response.json()
 		)).then(json => {
 			const artist = json.artists.items[0];
 			this.setState({artist});
-		}).catch(error => alert('Error!, Please re-search artist'));
+
+			const FETCH_ALBUM_URL = `${BASE_ALBUM_URL}/${artist.id}/top-tracks?country=US`;
+			fetch(FETCH_ALBUM_URL, {
+				method: 'GET'
+			}).then(response => (
+				response.json()
+			)).then(json => {
+				this.setState({
+					albums: json.tracks,
+				});
+			}).catch(error => {
+				console.error(error);
+			});
+		}).catch(error => {
+			alert('Error!, Please re-search artist');
+			console.error(error);
+			this.setState({artist: null});
+		});
 	}
 }

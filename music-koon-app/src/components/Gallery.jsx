@@ -2,7 +2,22 @@ import * as React from 'react';
 
 export const Gallery = props => (
 	<div className="Gallery">
-		<div>Music 1</div>
-		<div>Music 2</div>
+		{
+			props.albums.map((track, index) => (
+				<div
+					key={index}
+					className="Track"
+				>
+					<img
+						src={track.album.images[0].url}
+						className="Track-image"
+						alt="track"
+					/>
+					<p className="Track-text">
+						{track.name}
+					</p>
+				</div>
+			))
+		}
 	</div>
 );

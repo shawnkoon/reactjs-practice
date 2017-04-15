@@ -9,11 +9,69 @@ body {
 }
 
 .App-title {
-	font-size: 26px;
+	font-size: 40px;
 }
 
 /*Profile*/
 
-.Profile-image {
+.Profile {
 	display: flex;
+	justify-content: center;
+}
+
+.Profile-info {
+	margin-left: 10px;
+	text-align: left;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+}
+
+.Profile-image {
+	width: 150px;
+	height: 150px;
+	border: 3px solid #fff;
+	border-radius: 75px;
+	object-fit: cover;
+}
+
+.Profile-name {
+	font-size: 26px;
+}
+
+.Profile-followers, .Profile-genres {
+	font-size: 18px;
+}
+
+/*Gallery*/
+
+.Track {
+	display: inline-block;
+	width: 220px;
+	height: 220px;
+	margin: 10px;
+	text-align: left;
+	cursor: pointer;
+	position: relative;
+}
+
+.Track-image {
+	width: 220px;
+	height: 220px;
+	border: 3px solid #fff;
+	border-radius: 3px;
+	object-fit: cover;
+	position: absolute;
+}
+
+.Track-text {
+	background-color: black;
+	color: white;
+	opacity: 0.75;
+	width: 214px;
+	margin-left: 3px;
+	bottom: 0;
+	text-align: center;
+	position: absolute;
+	padding: 10px;
 }
