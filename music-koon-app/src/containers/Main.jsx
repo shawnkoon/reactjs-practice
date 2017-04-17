@@ -10,6 +10,7 @@ import {
 } from 'react-bootstrap';
 
 // Components & Container.
+import { Footer } from '../components/Footer';
 import { Main } from '../components/Main';
 import { ProfileContainer } from './Profile';
 import { GalleryContainer } from './Gallery';
@@ -29,40 +30,43 @@ export class MainContainer extends React.Component {
 
 	render() {
 		return (
-			<div className="App">
-				<Main/>
-				<div>
-					<FormGroup>
-						<InputGroup>
-							<FormControl
-								type="text"
-								placeholder="Search for an Artist..."
-								value={this.state.query}
-								onChange={this.handleInputChange}
-								onKeyPress={this.enterPressed}
-							/>
-							<InputGroup.Addon onClick={this.search}>
-								<Glyphicon glyph="search"/>
-							</InputGroup.Addon>
-						</InputGroup>
-					</FormGroup>
-				</div>
-				{
-					this.state.artist !== null
-					? <div>
-						<ProfileContainer
-							artist={this.state.artist}
-						/>
-						{
-							this.state.albums !== null
-							? <GalleryContainer
-								albums={this.state.albums}
-							/>
-							: <div></div>
-						}
+			<div>
+				<div className="App">
+					<Main/>
+					<div>
+						<FormGroup>
+							<InputGroup>
+								<FormControl
+									type="text"
+									placeholder="Search for an Artist..."
+									value={this.state.query}
+									onChange={this.handleInputChange}
+									onKeyPress={this.enterPressed}
+								/>
+								<InputGroup.Addon onClick={this.search}>
+									<Glyphicon glyph="search"/>
+								</InputGroup.Addon>
+							</InputGroup>
+						</FormGroup>
 					</div>
-					: <div></div>
-				}
+					{
+						this.state.artist !== null
+						? <div>
+							<ProfileContainer
+								artist={this.state.artist}
+							/>
+							{
+								this.state.albums !== null
+								? <GalleryContainer
+									albums={this.state.albums}
+								/>
+								: <div></div>
+							}
+						</div>
+						: <div></div>
+					}
+				</div>
+				<Footer/>
 			</div>
 		)
 	}

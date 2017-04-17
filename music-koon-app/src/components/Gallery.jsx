@@ -11,9 +11,13 @@ export const Gallery = props => (
 					<img
 						src={track.album.images[0].url}
 						className="Track-image"
-						onClick={() => (props.playSoundClip(track.preview_url))}
 						alt="track"
 					/>
+					<div className="Track-play" onClick={() => (props.playSoundClip(track.preview_url))}>
+						<div className="Track-play-inner">
+							&#9654;
+						</div>
+					</div>
 					<p className="Track-text">
 						{track.name}
 					</p>
