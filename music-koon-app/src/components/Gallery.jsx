@@ -11,6 +11,7 @@ export const Gallery = props => (
 					<img
 						src={track.album.images[0].url}
 						className="Track-image"
+						onClick={() => (props.playSoundClip(track.preview_url))}
 						alt="track"
 					/>
 					<p className="Track-text">
