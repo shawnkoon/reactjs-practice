@@ -8,7 +8,6 @@ const initialEventsState = {
 export const eventReducer = (state = initialEventsState, action) => {
   switch(action.type) {
     case types.ADD_EVENT:
-      console.log('current state', state);
       const newList = state.events;
       const newEvent = {
         id: state.nextIndex++,

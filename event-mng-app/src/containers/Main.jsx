@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 
 // Contianers & Components
 import { Main } from '../components/Main';
+import { EventListContainer } from '../containers/EventList';
 
 // Styles
 import {
@@ -45,6 +46,7 @@ export class MainContainer extends React.Component {
             Add Event
           </Button>
         </div>
+        <EventListContainer {...this.props}/>
       </div>
     );
   }
@@ -58,10 +60,13 @@ export class MainContainer extends React.Component {
   }
 
   addEvent() {
-    console.log('this.props',this.props);
     this.props.addEvent(this.state.text);
   }
 }
+
+const mapStateToProps = (state) => (
+  {...state}
+);
 
 const mapDispatchToProps = (dispatch) => (
   {
@@ -71,4 +76,4 @@ const mapDispatchToProps = (dispatch) => (
   }
 );
 
-export const ConnectedMainContainer = connect(null, mapDispatchToProps)(MainContainer);
+export const ConnectedMainContainer = connect(mapStateToProps, mapDispatchToProps)(MainContainer);
