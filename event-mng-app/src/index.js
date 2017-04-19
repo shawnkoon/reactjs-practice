@@ -1,10 +1,17 @@
 import * as React from 'react';
 import * as ReactDOM from 'react-dom';
+import { Provider } from 'react-redux';
+import { createStore } from 'redux';
+import { eventReducer } from './store/reducers';
 
 // Containers
-import { MainContainer } from './containers/Main';
+import { ConnectedMainContainer } from './containers/Main';
+
+const store = createStore(eventReducer);
 
 ReactDOM.render(
-  <MainContainer/>,
+  <Provider store={store}>
+    <ConnectedMainContainer/>
+  </Provider>,
   document.getElementById('root')
 );
