@@ -24,6 +24,11 @@ export class MainContainer extends React.Component {
     };
     this.handleChange = this.handleChange.bind(this);
     this.addEvent = this.addEvent.bind(this);
+    this.deleteEvent = this.deleteEvent.bind(this);
+  }
+
+  componentWillReceiveProps() {
+    console.log('comp will receive props', this.props);
   }
 
   render() {
@@ -46,7 +51,7 @@ export class MainContainer extends React.Component {
             Add Event
           </Button>
         </div>
-        <EventListContainer {...this.props}/>
+        <EventListContainer {...this.props} deleteFunction={this.deleteEvent}/>
       </div>
     );
   }
@@ -61,6 +66,11 @@ export class MainContainer extends React.Component {
 
   addEvent() {
     this.props.addEvent(this.state.text);
+  }
+
+  deleteEvent(e) {
+    const intID = parseInt(e.target.id);
+    this.props.deleteEvent(intID);
   }
 }
 

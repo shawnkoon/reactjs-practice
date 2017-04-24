@@ -6,9 +6,9 @@ const initialEventsState = {
 };
 
 export const eventReducer = (state = initialEventsState, action) => {
+  const newList = state.events.slice(0);
   switch(action.type) {
     case types.ADD_EVENT:
-      const newList = state.events;
       const newEvent = {
         id: state.nextIndex++,
         event: action.event, 
@@ -19,13 +19,16 @@ export const eventReducer = (state = initialEventsState, action) => {
         events: newList,
       };
     case types.DELETE_EVENT:
-      console.log(state);
-      for (let i = 0; i < state.events.length; i++) {
-        if (state.events[i].id === action.id) {
-          state.events.splice(i, 1);
-        }  
+      console.log('Delete Event called!');
+      for (let i = 0; i < newList.length; i++) {
+        if (newList[i].id === action.id) {
+          newList.splice(i, 1);
+        }
       }
-      return state;
+      return {
+        ...state,
+        events: newList,
+      };
     default:
       return state;
   }
