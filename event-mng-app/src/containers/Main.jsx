@@ -24,11 +24,7 @@ export class MainContainer extends React.Component {
     };
     this.handleChange = this.handleChange.bind(this);
     this.addEvent = this.addEvent.bind(this);
-    this.deleteEvent = this.deleteEvent.bind(this);
-  }
-
-  componentWillReceiveProps() {
-    console.log('comp will receive props', this.props);
+    this.enterPressed = this.enterPressed.bind(this);
   }
 
   render() {
@@ -41,36 +37,39 @@ export class MainContainer extends React.Component {
               type="text"
               placeholder="Event Name..."
               onChange={this.handleChange}
+              onKeyPress={this.enterPressed}
               />
           </FormGroup>
           <Button
             bsStyle="warning"
             bsSize="large"
+            disabled={this.buttonDisabled()}
             onClick={this.addEvent}
           >
             Add Event
           </Button>
         </div>
-        <EventListContainer {...this.props} deleteFunction={this.deleteEvent}/>
+        <EventListContainer {...this.props}/>
       </div>
     );
   }
 
-  handleChange(event) {
-    this.setState(
-      {
-        text: event.target.value.trim(),
-      }
-    );
+  buttonDisabled() {
+    return !this.state.text;
+  }
+
+  handleChange(e) {
+    this.setState({ text: e.target.value.trim() });
+  }
+
+  enterPressed(e) {
+    if (e.key === 'Enter' && !this.buttonDisabled()) {
+      this.addEvent();
+    }
   }
 
   addEvent() {
     this.props.addEvent(this.state.text);
-  }
-
-  deleteEvent(e) {
-    const intID = parseInt(e.target.id);
-    this.props.deleteEvent(intID);
   }
 }
 

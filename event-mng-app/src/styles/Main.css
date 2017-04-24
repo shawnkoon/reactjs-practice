@@ -26,5 +26,12 @@ input {
 
 .delete-button {
   float: right;
-  padding-left: 5px;
+  color: red;
+  padding: 10px;
+  padding-left: 15px;
+  padding-right: 15px;
+  margin-right: -16px;
+  margin-top: -11px;
+  border: dotted .3px grey;
+  border-radius: 2px;
 }

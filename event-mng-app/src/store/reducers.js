@@ -19,7 +19,6 @@ export const eventReducer = (state = initialEventsState, action) => {
         events: newList,
       };
     case types.DELETE_EVENT:
-      console.log('Delete Event called!');
       for (let i = 0; i < newList.length; i++) {
         if (newList[i].id === action.id) {
           newList.splice(i, 1);
