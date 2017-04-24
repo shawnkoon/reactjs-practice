@@ -30,7 +30,7 @@ export class MainContainer extends React.Component {
     return (
       <div className="App">
         <Main/>
-        <div className="form-inline">
+        <div className="form-inline reminder-form">
           <FormGroup bsSize="large">
             <FormControl
               type="text"
@@ -72,6 +72,9 @@ const mapDispatchToProps = (dispatch) => (
   {
     addEvent: (event) => {
       dispatch(actions.addEvent(event))
+    },
+    deleteEvent: (id) => {
+      dispatch(actions.deleteEvent(id))
     },
   }
 );

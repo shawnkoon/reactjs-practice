@@ -4,14 +4,27 @@ import * as React from 'react';
 import { EventList } from '../components/EventList';
 
 export class EventListContainer extends React.Component {
+  constructor(props) {
+    super(props);
+    this.deleteEvent = this.deleteEvent.bind(this);
+  }
   render() {
-    console.log('this.props', this.props);
     return (
-      <div>
-        {this.props.events.map((event, key) => (
-          <EventList eventObject={event} key={key}/>
+      <ul className="list-group col-sm-4">
+        {this.props.events.map((event) => (
+          <li key={event.id} className="list-group-item">
+            <EventList eventObject={event}/>
+            <div className="list-item delete-button" id={event.id} onClick={this.deleteEvent}>
+              &#x2715;
+            </div>
+          </li>
         ))}
-      </div>
+      </ul>
     );
+  }
+
+  deleteEvent(e) {
+    const intID = parseInt(e.target.id);
+    this.props.deleteEvent(intID);
   }
 }

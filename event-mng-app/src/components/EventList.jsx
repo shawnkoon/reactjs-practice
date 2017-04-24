@@ -1,7 +1,7 @@
 import * as React from 'react';
 
 export const EventList = (props) => (
-  <h1>
+  <div className="list-item">
     Event : {props.eventObject.event}, Id : {props.eventObject.id}
-  </h1>
+  </div>
 );

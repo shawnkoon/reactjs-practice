@@ -6,3 +6,10 @@ export const addEvent = (event) => (
     event,
   }
 );
+
+export const deleteEvent = (id) => (
+  {
+    type: types.DELETE_EVENT,
+    id,
+  }
+);
