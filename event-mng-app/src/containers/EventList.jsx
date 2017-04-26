@@ -10,7 +10,7 @@ export class EventListContainer extends React.Component {
   }
   render() {
     return (
-      <ul className="list-group col-sm-4">
+      <ul className="list-group col-sm-10">
         {this.props.events.map((event) => (
           <li key={event.id} className="list-group-item">
             <EventList eventObject={event}/>

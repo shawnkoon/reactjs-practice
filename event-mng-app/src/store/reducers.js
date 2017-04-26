@@ -1,4 +1,5 @@
 import * as types from './actionTypes';
+import { bake_cookie, read_cookie } from 'sfcookies';
 
 const initialEventsState = {
   events: [],
@@ -7,6 +8,10 @@ const initialEventsState = {
 
 export const eventReducer = (state = initialEventsState, action) => {
   const newList = state.events.slice(0);
+  let newState = {};
+
+  state = read_cookie('event_state');
+  
   switch(action.type) {
     case types.ADD_EVENT:
       const newEvent = {
@@ -14,20 +19,24 @@ export const eventReducer = (state = initialEventsState, action) => {
         event: action.event, 
       };
       newList.push(newEvent);
-      return {
+      newState = {
         ...state,
         events: newList,
       };
+      bake_cookie('event_state', newState);
+      return newState;
     case types.DELETE_EVENT:
       for (let i = 0; i < newList.length; i++) {
         if (newList[i].id === action.id) {
           newList.splice(i, 1);
         }
       }
-      return {
+      newState = {
         ...state,
         events: newList,
       };
+      bake_cookie('event_state', newState);
+      return newState;
     default:
       return state;
   }
