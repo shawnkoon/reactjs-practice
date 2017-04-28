@@ -6,11 +6,14 @@ const initialEventsState = {
   nextIndex: 0,
 };
 
-export const eventReducer = (state = initialEventsState, action) => {
+export const eventReducer = (state = read_cookie('event_state'), action) => {
+  if (!state.events) {
+    state = initialEventsState;
+  }
+
   const newList = state.events.slice(0);
   let newState = {};
 
-  state = read_cookie('event_state');
   
   switch(action.type) {
     case types.ADD_EVENT:
